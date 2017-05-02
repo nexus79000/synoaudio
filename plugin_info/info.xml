@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<info>
+    <id>synoaudio</id>
+    <name>Syno Audio Station</name>
+    <description>
+	Plugin pour Synology Audio Station.
+
+Permet de commander et de lire de la musique sur des players DLNA</description>
+    <icon>fa fa-music</icon>
+    <licence>AGPL</licence>
+    <author>nexus79000</author>
+    <installation>
+	Vous devez préciser l'adresse IP de votre Synology ainsi que le port du DSM. 
+	L'utilisateur doit être autorisé à utiliser le packet Audio Station.
+	</installation>
+    <require>3.0</require>
+    <version>25</version>
+    <category>multimedia</category>
+	<include type="php">synoaudio.inc</include>
+	<!--<display>panel</display>
+    <mobile>panel</mobile>-->
+	<hasDependency>1</hasDependency>
+	<hasOwnDeamon>1</hasOwnDeamon>
+</info>
+

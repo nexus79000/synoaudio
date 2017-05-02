@@ -1,0 +1,190 @@
+<div class="eqLogic eqLogic-widget noresize synoaudio"
+	data-eqLogic_id="#id#" 
+	data-eqLogic_uid="#uid#"
+	data-version="#version#"
+	style="border:#border#;
+		border-radius:#border-radius#;
+		background-color: #background-color#;
+		color: #color#;
+		width: #width#;
+		height: #height#;
+		text-align:center;
+		#style#" 
+	data-category="#category#"
+	data-syno-id="#synoid#" >
+	
+<style type="text/css">
+		
+		div.eqLogic.eqLogic-widget.noresize.synoaudio {
+			width: 240px !important;
+			height:380px !important;
+		}
+		div.eqLogic.eqLogic-widget.noresize.synoaudio.light{
+			height:162px !important;
+		}
+		.griser {
+			pointer-events: none;
+			-moz-opacity:0.38;
+			opacity:0.38;
+			filter:alpha(opacity=38);
+			-khtml-opacity:0.38;"
+		}
+		.synoaudio .cmd a {
+			width: 30px;
+			height:30px;
+			font-size: 1em;
+		}
+		@font-face {
+			font-family: linkinpark;
+			src:   url("plugins/synoaudio/core/template/fonts/LinkinPark.ttf") format("truetype");
+			font-weight:normal;
+			font-style:normal;
+		}
+		span.statusspSyno {
+			font-family: linkinpark;
+			font-size:10px;
+			color: #text-color#;
+			letter-spacing: 1px;
+		}
+		span.titlespSyno {
+			font-family: linkinpark; 
+			font-size:14px;
+			color:  #text-color#;
+			letter-spacing: 1px;
+		}
+		.arrondie {
+			-moz-border-radius:5px;
+			-webkit-border-radius:5px;
+			border-radius:5px;
+		}
+
+	</style>
+	<center class="widget-name">
+		<a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
+	</center>
+	
+	<div style="position:relative;top:2px">
+		<span class="titlespSyno">
+			#title#
+		</span>
+	</div>
+	<div class="thumbnailAlbumArt arrondie">
+		<img style="width:90%;" src="#thumbnail#" />
+	</div>
+	<div style="position:relative;top:2px">
+	     <span class="statusspSyno">#state#</span>
+	</div>
+	<div style="position:relative;top:2px" align="center">
+		<!--<span class="volume" style="z-index:1" value="#volume#" id="#synoid#" >
+		-->
+		<div class="volume" data-cmd_id="#volume_id#" style="width: 220px;" value="#volume#" ></div>
+	</div>	
+	
+	<div style="position:relative;top:2px">
+		<a class="btn btn-xs cmd mute" data-cmd_id="#cmd_mute_id#"><i class="fa fa-volume-off"></i></a>
+		<a class="btn btn-black btn-xs cmd unmute" data-cmd_id="#cmd_unmute_id#"><i class="fa fa-times"></i></a>&nbsp;
+		<a class="btn btn-xs cmd stop" data-cmd_id="#cmd_stop_id#"><i class="fa fa-stop"></i></a>
+		<a class="btn btn-xs cmd previous" data-cmd_id="#cmd_prev_id#"><i class="fa fa-step-backward"></i></a>
+		<a class="btn btn-xl cmd play" data-cmd_id="#cmd_play_id#"><i class="fa fa-play"></i></a>
+		<a class="btn btn-xl cmd pause" data-cmd_id="#cmd_pause_id#"><i class="fa fa-pause"></i></a>
+		<a class="btn btn-xs cmd next" data-cmd_id="#cmd_next_id#"><i class="fa fa-step-forward"></i></a>&nbsp;
+		<a class="btn btn-xs cmd shuffle" data-cmd_id="#cmd_shuffle_id#"><i class="fa fa-random"></i></a>
+		<a class="btn btn-xs cmd repeat" data-cmd_id="#cmd_repeat_id#"><i class="fa fa-repeat"></i></a>
+	</div>
+
+	
+    <div style="position:relative;top:4px">
+		<i class="fa fa-th-list cursor playlist tooltips" title="Playlists"></i>
+		<i class="fa fa-rss cursor radioDisplay tooltips" title="Radio"></i>
+   		<i class="fa fa-bars cursor queue tooltips" title="Liste de lecture"></i>
+		<i class="fa fa-check-square-o cursor player tooltips" title="Player"></i>
+		<i class="fa fa-search cursor searchsong tooltips" title="Recherche"></i>
+	</div>
+	
+	<script>
+		if('#blockVolume#' == 1){
+			//$('.synoaudio[data-eqLogic_id=#id#] .volume').hide();
+		}
+			$(".synoaudio[data-eqLogic_id=#id#] .volume").slider({
+				min: 0,
+				max: 100,
+				range: "min",
+				value: ('#volume#' == '') ? 0 : parseInt('#volume#'),
+			//	reversed : true
+			});
+  
+			$(".synoaudio[data-eqLogic_id=#id#] .slider.slider-horizontal").css('z-index',1);
+			$(".synoaudio[data-eqLogic_id=#id#] .volume").on('slidestop', function (event,ui) {
+				jeedom.cmd.execute({id: '#volume_id#', value: {slider: ui.value}});
+			});
+	</script>
+	
+	<script>
+		if('#state#' == 'Player hors ligne'){
+			$('.synoaudio[data-eqLogic_id=#id#]').addClass('griser');
+		}
+		
+		if('#hideThumbnail#' == 1){
+			$('.synoaudio[data-eqLogic_id=#id#] .thumbnailAlbumArt').hide();
+			$('.synoaudio[data-eqLogic_id=#id#]').addClass('light');
+		}
+
+		if('#repeat_state#' == "all"){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.repeat').addClass('btn-success');
+		}
+		
+		if('#repeat_state#' == "one"){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.repeat').addClass('btn-black');
+		}
+
+		if('#shuffle_state#' == 1){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.shuffle').addClass('btn-success');
+		}
+		
+		if('#volume#' == 0 && '#onmute#' == 1){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.mute').hide();
+		}else{
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.unmute').hide();
+		}
+		
+
+		if('#state_nb#' == 1){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.play').hide();
+		}else{
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.pause').hide();
+		}
+		
+		$('.synoaudio[data-eqLogic_id=#id#] .cmd').on('click', function() {
+			jeedom.cmd.execute({id: $(this).data('cmd_id')});
+		});
+
+		$('.synoaudio[data-eqLogic_id=#id#] .queue').on('click', function() {
+			$('#md_modal2').dialog({title: "Musiques"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=queue.syno&id=#id#').dialog('open');
+		});
+
+		$('.synoaudio[data-eqLogic_id=#id#] .playlist').on('click', function() {
+			$('#md_modal2').dialog({title: "Playlist"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=playlist.syno&id=#id#').dialog('open');
+		});
+
+		$('.synoaudio[data-eqLogic_id=#id#] .radioDisplay').on('click', function() {
+			$('#md_modal2').dialog({title: "Radios"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=radio.syno&id=#id#').dialog('open');
+		});
+		
+		$('.synoaudio[data-eqLogic_id=#id#] .searchsong').on('click', function() {
+			$('#md_modal2').dialog({title: "Recherche"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=searchsong.syno&id=#id#').dialog('open');
+		});
+
+		if('#IsMultiple#' != 1){
+			$('.synoaudio[data-eqLogic_id=#id#] .player').hide();
+		}
+		$('.synoaudio[data-eqLogic_id=#id#] .player').on('click', function() {
+			$('#md_modal2').dialog({title: "Player"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=player.syno&id=#id#').dialog('open');
+		});
+
+	</script>
+</div>

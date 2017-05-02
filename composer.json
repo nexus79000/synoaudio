@@ -1,0 +1,9 @@
+{
+    "description": "Plugin synoaudio jeedom",
+    "require": {
+		"duncan3dc/speaker": "dev-master",
+        "robgridley/flysystem-smb": "dev-master"
+    },
+    "minimum-stability" : "dev"
+
+}

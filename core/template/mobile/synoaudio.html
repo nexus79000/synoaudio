@@ -1,0 +1,151 @@
+<div class="eqLogic eqLogic-widget synoaudio"
+	data-eqLogic_id="#id#" 
+	data-eqLogic_uid="#uid#"
+	data-version="#version#"
+	style="border:#border#;
+		border-radius:#border-radius#;
+		background-color: #background-color#;
+		color: #color#;
+		text-align:center;
+		overflow:hidden;
+		width: 245px;
+		height:19.34em;
+		#style#"
+	data-category="#category#"
+	data-syno-id="#synoid#" >
+
+	<style type="text/css">
+		.griser {
+			pointer-events: none;
+			-moz-opacity:0.38;
+			opacity:0.38;
+			filter:alpha(opacity=38);
+			-khtml-opacity:0.38;"
+		} 
+		.synoaudio .cmd a {
+			width: 30px;
+			height:30px;
+			font-size: 1em;
+		}
+		.synoaudio .cmd.col2 a {
+			width: 85px;
+			height: 30px;
+			font-size: 1em;
+		}
+		@font-face {
+			font-family: linkinpark;
+			src:   url("plugins/synoaudio/core/template/fonts/LinkinPark.ttf") format("truetype");
+			font-weight:normal;
+			font-style:normal;
+		}
+		.synoaudio .bouton_bas{
+			height: 50%;
+			margin-left: 0.1em;
+			margin-right: 0.1em;
+			cursor: pointer;
+			opacity: 0.5;
+		}
+		span.statusspSyno {
+			font-family: linkinpark;
+			font-size:0.8em;
+			color: #text-color#;
+			letter-spacing: 1px;
+		}
+		span.titlespSyno {
+			font-family: linkinpark; 
+			font-size:1.2em;
+			color:  #text-color#;
+			letter-spacing: 1px;
+		}
+		.arrondie {
+			-moz-border-radius:7px;
+			-webkit-border-radius:7px;
+			border-radius:7px;
+		}
+
+	</style>
+	<center class="widget-name">
+		<a href="#eqLink#" style="font-size : 1.5em;#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
+	</center>
+	<div style="margin-top : 2px; height:12em;">
+		<div style="position:relative;top:4px">
+			<span class="titlespSyno">#title#</span>
+		</div>
+		<div class="thumbnailAlbumArt" style="margin-top : 2px;">
+			<img style="width : 65%;border-radius:5%;" src="#thumbnail#" />
+		</div>
+		<div style="position:relative;top:4px">
+			<span class="statusspSyno">#state#</span>
+		</div>
+		<div style="margin-top : 2px;height:2.5em;">
+			<img class="bouton_bas" style="margin-right:0.2em;opacity: 0.5;" src="plugins/synoaudio/core/template/images/volumeOn.png" onclick="soundMenu#id#();"/>&nbsp;
+			<img class="bouton_bas previous cmd" data-cmd_id="#cmd_previous_id#"  src="plugins/synoaudio/core/template/images/prev.png" onclick="jeedom.cmd.execute({id: #cmd_previous_id#});"/>&nbsp;
+			<img class="bouton_bas play cmd" data-cmd_id="#cmd_play_id#" src="plugins/synoaudio/core/template/images/play.png" onclick="jeedom.cmd.execute({id: #cmd_play_id#});" style="margin-left:0.32em;" />&nbsp;
+			<img class="bouton_bas pause cmd" data-cmd_id="#cmd_pause_id#" src="plugins/synoaudio/core/template/images/pause.png" onclick="jeedom.cmd.execute({id: #cmd_pause_id#});" />&nbsp;
+			<img class="bouton_bas cmd" data-cmd_id="#cmd_next_id#" src="plugins/synoaudio/core/template/images/next.png" onclick="jeedom.cmd.execute({id: #cmd_next_id#});"/>
+		</div>
+		<div style="height:2.5em;" class="primarySubMenu">
+			<a class="bouton_bas mute cmd" data-cmd_id="#cmd_mute_id#" onclick="jeedom.cmd.execute({id: #cmd_mute_id#});" style="font-size:2em;color:black;"><i class="fa fa-volume-off"></i></a>
+			<a class="bouton_bas unmute cmd" data-cmd_id="#cmd_unmute_id#" onclick="jeedom.cmd.execute({id: #cmd_unmute_id#});" style="font-size:2em;color:black;"><i class="fa fa-times"></i></a>&nbsp;
+			<img class="bouton_bas cmd" data-cmd_id="#cmd_stop_id#" src="plugins/synoaudio/core/template/images/stop.png" style="position:relative;top:-3px;" onclick="jeedom.cmd.execute({id: #cmd_stop_id#});"/>&nbsp;
+			<a class="bouton_bas shuffle cmd" data-cmd_id="#cmd_shuffle_id#" onclick="jeedom.cmd.execute({id: #cmd_shuffle_id#});" style="font-size:2em;color:black;"><i class="fa fa-random"></i></a>&nbsp;
+			<a class="bouton_bas repeat cmd" data-cmd_id="#cmd_repeat_id#" onclick="jeedom.cmd.execute({id: #cmd_repeat_id#});" style="font-size:2em;color:black;"><i class="fa fa-repeat"></i></a>
+		</div>
+		<div style="height:3em;display:none;margin-top:10px;" class="soundMenu">
+			<div class="volume full-width-slider cmd" data-cmd_id="#volume_id#" style="width: 96%;text-align: right;min-width : 100px;">
+				<input type="range" min="0" max="100" data-theme="a" value="#volume#"/>
+			</div>
+		</div>
+	</div>
+	<script>
+		function soundMenu#id#(){
+			if(!$('.synoaudio[data-eqLogic_uid=#uid#] .soundMenu').is(':visible')){
+				$('.synoaudio[data-eqLogic_uid=#uid#] .soundMenu').show();
+				$('.synoaudio[data-eqLogic_uid=#uid#] .primarySubMenu').hide();
+			}else{
+				$('.synoaudio[data-eqLogic_uid=#uid#] .soundMenu').hide();
+				$('.synoaudio[data-eqLogic_uid=#uid#] .primarySubMenu').show();
+			}
+		}
+
+		$("body").undelegate(".synoaudio[data-eqLogic_uid=#uid#] .volume",'slidestop');
+		$("body").delegate(".synoaudio[data-eqLogic_uid=#uid#] .volume",'slidestop', 		function (event, ui) {
+					jeedom.cmd.execute({id: '#volume_id#', value: {slider: $(".synoaudio[data-eqLogic_uid=#uid#] .volume input").value()}});
+				}
+		);
+	
+		if('#volume#' == 0 && '#onmute#' == 1){
+			$('.synoaudio[data-eqLogic_uid=#uid#] .mute').hide();
+		}else{
+			$('.synoaudio[data-eqLogic_uid=#uid#] .unmute').hide();
+		}
+		
+		if('#state#' == 'Player hors ligne'){
+			$('.synoaudio[data-eqLogic_id=#id#]').addClass('griser');
+		}
+		if('#hideThumbnail#' == 1){
+			$('.synoaudio[data-eqLogic_id=#id#] .thumbnailAlbumArt').hide();
+			$('.synoaudio[data-eqLogic_id=#id#]').height(170);
+		}
+		
+		if('#repeat_state#' == "all"){
+			$('.synoaudio[data-eqLogic_uid=#uid#] .repeat').css('color','red');
+		}
+		if('#repeat_state#' == "one"){
+			$('.synoaudio[data-eqLogic_uid=#uid#] .repeat').css('color','blue');
+		}
+		
+		if('#shuffle_state#' == 1){
+			$(".synoaudio[data-eqLogic_uid=#uid#] .shuffle").css('color','red');
+		}
+		if('#mute_state#' == 1){
+			$(".synoaudio[data-eqLogic_uid=#uid#] .mute").css('color','red');
+		}
+		
+		if('#state_nb#' == 1){
+			$('.synoaudio[data-eqLogic_uid=#uid#] .play').remove();
+		}else{
+			$('.synoaudio[data-eqLogic_uid=#uid#] .pause').remove();
+		}
+	</script>
+</div>
