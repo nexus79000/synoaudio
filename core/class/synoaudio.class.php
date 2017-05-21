@@ -18,6 +18,7 @@
 
 /* * ***************************Includes********************************* */
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
+require_once dirname(__FILE__) . '/../php/synoaudio.inc.php';
 use duncan3dc\Speaker\TextToSpeech;
 use duncan3dc\Speaker\Providers\VoxygenProvider;
 
@@ -27,17 +28,7 @@ class synoaudio extends eqLogic {
 	public static $_tts_encours = false;
 	
 	public static $_widgetPossibility = array(
-		'custom' => true);/*  ,
-		'parameters' => array(
-			'sub-background-color' => array(
-				'name' => 'Couleur de la barre de contrôle',
-				'type' => 'color',
-				'default' => '#5d9cec',
-				'allow_transparent' => true,
-				'allow_displayType' => true,
-			),
-		),
-	);*/ 
+		'custom' => true);
 	
 	/*     * ***********************Methode static*************************** */
 	
