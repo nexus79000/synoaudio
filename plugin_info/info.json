@@ -5,7 +5,7 @@
 	"description" : "Plugin pour Synology Audio Station",
 	"licence" : "AGPL",
 	"author" : "nexus79000",
-	"require" : "2.4",
+	"require" : "2.3",
 	"category" : "multimedia",
 	"hasDependency" : false,
 	"hasOwnDeamon" : true,

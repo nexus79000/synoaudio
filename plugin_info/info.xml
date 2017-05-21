@@ -13,7 +13,7 @@ Permet de commander et de lire de la musique sur des players DLNA</description>
 	Vous devez préciser l'adresse IP de votre Synology ainsi que le port du DSM. 
 	L'utilisateur doit être autorisé à utiliser le packet Audio Station.
 	</installation>
-    <require>2.4</require>
+    <require>2.3</require>
     <version>25</version>
     <category>multimedia</category>
 	<include type="php">synoaudio.inc</include>
