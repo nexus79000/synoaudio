@@ -1,0 +1,11 @@
+﻿= Synoaudio
+
+The Synoaudio plugin allows to connect to your nas and control Audio Station and your compatible players. It will allow you to see the status of a drive and perform actions on it (play, pause, next, previous, volume, choice of a playlist...)
+
+include::configuration.asciidoc[]
+
+== FAQ
+include::faq.asciidoc[]
+
+== Changelog
+include::changelog.asciidoc[]
