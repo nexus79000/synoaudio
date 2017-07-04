@@ -143,7 +143,7 @@ class synoaudio extends eqLogic {
 		$cron->halt();
    }
 	
-	public function pull($_eqLogic_id = null){ //Fini
+	public static function pull($_eqLogic_id = null){ //Fini
 		log::add('synoaudio', 'debug',' Récupération de l\'état des lecteurs - Début' );
 		foreach (synoaudio::byType('synoaudio') as $eqLogic) {
 			if($eqLogic->getIsEnable()){
