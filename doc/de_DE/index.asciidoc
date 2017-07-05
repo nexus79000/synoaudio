@@ -1,0 +1,11 @@
+﻿= Synoaudio
+
+Das Synoaudio-Plugin ermöglicht eine Verbindung zu Ihrer NAS und Audio Station sowie kompatible Player aufzubauen. Es ermöglicht Ihnen den Status eines Laufwerks anzuzeigen und darüber Aktionen auszuführen (Play, Pause, vor, zurück, Lautstärke, Auswahl einer Playlist...).
+
+include::configuration.asciidoc[]
+
+== FAQ
+include::faq.asciidoc[]
+
+== Änderungsprotokoll
+include::changelog.asciidoc[]

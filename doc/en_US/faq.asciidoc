@@ -1,0 +1,21 @@
+Slow Jeedom and / or Nas since the plugin is installed ::
+The plugin makes regular calls to the nas to back all the useful information. It is possible to modify the parameter of the scheduled task, Général -> Administration -> engine tasks and on the synoaudio task, pull: change the value in the Daemon column (value in seconds, it is the interval between two tasks).
+
+J'ai configurer mon plugin mais j'ai l'erreur "200 : SyntaxError: Unexpected end of input" ::
+C'est une erreur générique, il faut aller dans l'onglet logs de Jeedom pour avoir plus de détail.
+Plusieurs pistes peuvent être explorer : 
+	- Vérifier que votre utilisateur / mot de passe soient corrects,
+	- Vérifier les droits de votre utilisateur sur votre nas . l'utilisateur doit avoir tous les droits dans AudioStation.
+	
+Le TTS met longtemps à répondre ::
+Le nombre action nécessaire au plugin pour énoncer un message est importante.
+En voici un extrait : 
+	- Création du message (la durée dépend de sa longueur)
+	- Transfert du message sur le réseau.
+	- Mise en lecture du fichier (beaucoup de requête faite à Audio Station)
+
+Le TTS Online ne fonctionne plus et/ou n'est plus disponible ::
+Suite a une changement chez le fournisseur, le mode online ne fonctionne plus. Le mode local reste disponible
+	
+Le message énoncé par le TTS n'est pas complet :: 
+Le plugin limite le message à 200 caractères pour le moteur Local et à 100 caractères pour le moteur Online.
