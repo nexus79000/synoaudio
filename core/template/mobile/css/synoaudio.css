@@ -1,0 +1,69 @@
+.synoaudio_widget{
+  height: 20em;
+}
+
+.synoaudio_widget.synoaudio.light {
+	height:11em !important;*/
+}
+
+.synoaudio_widget.griser {
+	pointer-events: none;
+	opacity:0.38;
+}
+.synoaudio_widget .widget-content {
+    margin-top : 5px;
+    height:12em;
+}
+
+.synoaudio_widget .sp_titlespSA,
+.synoaudio_widget .sp_thumbnailAlbumArt,
+.synoaudio_widget .sp_statusspSA{
+    position:relative;
+    margin: 4px 0;
+    
+}
+
+.synoaudio_widget .sp_titlespSA,
+.synoaudio_widget .sp_statusspSA{
+    height:1em;    
+}
+
+ .synoaudio_widget .sp_thumbnailAlbumArt img{
+    height: 8em;
+}
+.synoaudio_widget .sp_volumeSA{
+    height:3em;
+    display:none;
+    margin-top:10px;
+}
+
+.synoaudio_widget .sp_volumeSA  .volume{
+    width: 96%;
+    text-align: right;
+    min-width : 100px;
+}
+
+.synoaudio_widget .sp_CmdSA,
+.synoaudio_widget .sp_CmdSA2{
+    position:relative;
+    margin: 6px 0 4px 0;
+    height: 3em;
+}
+
+.synoaudio_widget .sp_CmdSA2 .mute,
+.synoaudio_widget .sp_CmdSA2 .unmute,
+.synoaudio_widget .sp_CmdSA .stop,
+.synoaudio_widget .sp_CmdSA .previous,
+.synoaudio_widget .sp_CmdSA .next,
+.synoaudio_widget .sp_CmdSA2 .shuffle,
+.synoaudio_widget .sp_CmdSA2 .repeat,
+.synoaudio_widget .sp_CmdSA .play,
+.synoaudio_widget .sp_CmdSA .pause,
+.synoaudio_widget .sp_CmdSA .pnlvolume{
+	font-size : 1.5em;
+    margin: 0 2px;
+}
+.synoaudio_widget .sp_CmdSA2 .repeat{
+	font-size : 1.3em;
+    margin: 0 5px; 
+}

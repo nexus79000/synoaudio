@@ -1,0 +1,143 @@
+<div class="eqLogic eqLogic-widget noresize synoaudio_widget synoaudio"
+	data-eqType="#eqType#" 
+    data-translate-category="#translate_category#" 
+    data-category="#category#" 
+    data-tags="#tags#" 
+    data-version="#version#" 
+    style="text-align:center;
+        border:#border#;
+        border-radius:#border-radius#;
+        background-color: #background-color#;
+        color: #color#;
+        #style#;" 
+	data-syno-id="#synoid#"
+    data-eqLogic_id="#id#" 
+	data-eqLogic_uid="#uid#"    >
+    <link rel="stylesheet" href="plugins/synoaudio/core/template/dashboard/css/synoaudio.css" />
+	
+    <center class="widget-name">
+		<span class="reportModeVisible" style="font-size : 1.2em;display:none;">#name_display# <span style="font-size: 0.85em;">#object_name#</span></span>
+		<a href="#eqLink#" class="reportModeHidden" style="font-size : 1.2em;#hideEqLogicName#">#name_display# <span style="font-size: 0.85em;">#object_name#</span></a>
+	</center>
+	
+	<div class="sp_titlespSA">
+		<span class="titlespSyno">
+			#title#
+		</span>
+	</div>
+	<div class="sp_thumbnailAlbumArt">
+		<img src="#thumbnail#" />
+	</div>
+    <div class="sp_statusspSA">
+	     <span class="statusspSyno">#state#</span>
+	</div>
+	<div class="sp_volumeSA" >
+		<div class="volume" data-cmd_id="#volume_id#" value="#volume#"></div>
+	</div>	
+	
+	<div class="sp_CmdSA">
+		<a class="cmd mute" data-cmd_id="#cmd_mute_id#"><i class="fas fa-volume-off"></i></a>
+		<a class="cmd unmute" data-cmd_id="#cmd_unmute_id#"><i class="fas fa-times"></i></a>
+		<a class="cmd stop" data-cmd_id="#cmd_stop_id#"><i class="fas fa-stop"></i></a>
+		<a class="cmd previous" data-cmd_id="#cmd_prev_id#"><i class="fas fa-step-backward"></i></a>
+		<a class="cmd play" data-cmd_id="#cmd_play_id#"><i class="fas fa-play"></i></a>
+		<a class="cmd pause" data-cmd_id="#cmd_pause_id#"><i class="fas fa-pause"></i></a>
+		<a class="cmd next" data-cmd_id="#cmd_next_id#"><i class="fas fa-step-forward"></i></a>
+		<a class="cmd shuffle" data-cmd_id="#cmd_shuffle_id#"><i class="fas fa-random"></i></a>
+		<a class="cmd repeat" data-cmd_id="#cmd_repeat_id#"><i class="fas fa-sync"></i></a>
+	</div>
+
+	
+    <div class="sp_PanelSA">
+		<i class="fas fa-th-list cursor playlist tooltips" title="Playlists"></i>
+		<i class="fas fa-rss cursor radioDisplay tooltips" title="Radio"></i>
+   		<i class="fas fa-bars cursor queue tooltips" title="Liste de lecture"></i>
+		<i class="fas fa-check-square-o cursor player tooltips" title="Player"></i>
+		<i class="fas fa-search cursor searchsong tooltips" title="Recherche"></i>
+	</div>
+	
+	<script>
+		if('#blockVolume#' == '1'){
+			//$('.synoaudio[data-eqLogic_id=#id#] .volume').hide();
+		}
+			$(".synoaudio[data-eqLogic_id=#id#] .volume").slider({
+				min: 0,
+				max: 100,
+				range: "min",
+				value: ('#volume#' == '') ? 0 : parseInt('#volume#'),
+			//	reversed : true
+			});
+  
+			$(".synoaudio[data-eqLogic_id=#id#] .slider.slider-horizontal").css('z-index',1);
+			$(".synoaudio[data-eqLogic_id=#id#] .volume").on('slidestop', function (event,ui) {
+				jeedom.cmd.execute({id: '#volume_id#', value: {slider: ui.value}});
+			});
+
+        if('#state#' == 'Player hors ligne'){
+			$('.synoaudio[data-eqLogic_id=#id#]').addClass('griser');
+		}
+		
+		if('#hideThumbnail#' == '1'){
+			$('.synoaudio[data-eqLogic_id=#id#] .sp_thumbnailAlbumArt').hide();
+			$('.synoaudio[data-eqLogic_id=#id#]').addClass('light');
+		}
+
+		if('#repeat_state#' == 'all'){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.repeat').addClass('repeat_all');
+		}
+		
+		if('#repeat_state#' == 'one'){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.repeat').addClass('repeat_one');
+		}
+
+		if('#shuffle_state#' == '1'){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.shuffle').addClass('shuffle_on');
+		}
+		
+		if('#volume#' == '0' && '#onmute#' == '1'){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.mute').hide();
+		}else{
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.unmute').hide();
+		}
+		
+
+		if('#state_nb#' == '1'){
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.play').hide();
+		}else{
+			$('.synoaudio[data-eqLogic_id=#id#] .cmd.pause').hide();
+		}
+		
+		$('.synoaudio[data-eqLogic_id=#id#] .cmd').on('click', function() {
+			jeedom.cmd.execute({id: $(this).data('cmd_id')});
+		});
+
+		$('.synoaudio[data-eqLogic_id=#id#] .queue').on('click', function() {
+			$('#md_modal2').dialog({title: "Musiques"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=queue.syno&id=#id#').dialog('open');
+		});
+
+		$('.synoaudio[data-eqLogic_id=#id#] .playlist').on('click', function() {
+			$('#md_modal2').dialog({title: "Playlist"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=playlist.syno&id=#id#').dialog('open');
+		});
+
+		$('.synoaudio[data-eqLogic_id=#id#] .radioDisplay').on('click', function() {
+			$('#md_modal2').dialog({title: "Radios"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=radio.syno&id=#id#').dialog('open');
+		});
+		
+		$('.synoaudio[data-eqLogic_id=#id#] .searchsong').on('click', function() {
+			$('#md_modal2').dialog({title: "Recherche"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=searchsong.syno&id=#id#').dialog('open');
+		});
+
+		if('#IsMultiple#' != '1'){
+			$('.synoaudio[data-eqLogic_id=#id#] .player').hide();
+		}
+		$('.synoaudio[data-eqLogic_id=#id#] .player').on('click', function() {
+			$('#md_modal2').dialog({title: "Player"});
+			$('#md_modal2').load('index.php?v=d&plugin=synoaudio&modal=player.syno&id=#id#').dialog('open');
+		});
+
+	</script>
+</div>

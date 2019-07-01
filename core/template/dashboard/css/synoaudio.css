@@ -1,0 +1,81 @@
+.synoaudio_widget{
+   height: 312px !important;
+   width: 312px !important;
+    
+}
+.synoaudio_widget.synoaudio.light {
+	height:152px !important;
+}
+
+.synoaudio_widget.griser {
+	pointer-events: none;
+	-moz-opacity:0.38;
+	opacity:0.38;
+	filter:alpha(opacity=38);
+	-khtml-opacity:0.38;"
+}
+
+
+.synoaudio_widget .sp_titlespSA,
+.synoaudio_widget .sp_thumbnailAlbumArt,
+.synoaudio_widget .sp_statusspSA,
+.synoaudio_widget .sp_volumeSA{
+    position:relative;
+    margin: 4px 0;
+}
+
+ .synoaudio_widget .sp_thumbnailAlbumArt img{
+    width:50%;
+}
+
+.synoaudio_widget .sp_volumeSA  .volume{
+    width:80%;
+    margin: 0 10%;
+}
+
+.synoaudio_widget .sp_CmdSA{
+    position:relative;
+    margin: 10px 0 4px 0;
+    height: 24px;
+}
+
+.synoaudio_widget .sp_CmdSA .mute,
+.synoaudio_widget .sp_CmdSA .unmute,
+.synoaudio_widget .sp_CmdSA .stop,
+.synoaudio_widget .sp_CmdSA .previous,
+.synoaudio_widget .sp_CmdSA .next,
+.synoaudio_widget .sp_CmdSA .shuffle,
+.synoaudio_widget .sp_CmdSA .repeat,
+.synoaudio_widget .sp_CmdSA .play,
+.synoaudio_widget .sp_CmdSA .pause{
+	width: 20px;
+	height: 20px;
+	font-size : 1.5em;
+    margin: 0 4px;
+}
+
+.synoaudio_widget .sp_PanelSA{
+    position:relative;
+    margin: 2px 0;
+    height: 20px;
+}
+.synoaudio_widget .sp_PanelSA .playlist,
+.synoaudio_widget .sp_PanelSA .radioDisplay,
+.synoaudio_widget .sp_PanelSA .queue,
+.synoaudio_widget .sp_PanelSA .player,
+.synoaudio_widget .sp_PanelSA .searchsong{
+	width: 20px;
+	height: 20px;
+	font-size : 1.3em;
+    margin: 0 4px;
+}
+
+
+.synoaudio_widget .sp_CmdSA .repeat_all i,
+.synoaudio_widget .sp_CmdSA .shuffle_on i,
+.synoaudio_widget .sp_CmdSA .mute_on i{
+    color:red;
+}
+.synoaudio_widget .sp_CmdSA  .repeat_one i{
+    color:blue;
+}
