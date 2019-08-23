@@ -75,16 +75,9 @@ class synoaudio extends eqLogic {
 
 		switch($_action) {
 			case 'Start' :
-				self::GetSid();
 				self::deamon_start();
-				cache::set( 'SYNO.tache.off', true, 0,null) ;
 				self::deamon_changeAutoMode(1);
-				log::add('synoaudio', 'info', '##########################################');
-				log::add('synoaudio', 'info', '# Démarrage de la tache Synoaudio \'pull\' #');
-				log::add('synoaudio', 'info', '##########################################');
-
 				break;
-
 			case 'Stop':
 				do {
 					self::deamon_stop();
@@ -92,11 +85,6 @@ class synoaudio extends eqLogic {
 					$etat=self::deamon_info();
 				} while ($etat['state'] != 'nok');
 				self::deamon_changeAutoMode(0);
-				self::deleteSid();
-				cache::set( 'SYNO.tache.off', false, 0,null) ;
-				log::add('synoaudio', 'info', '######################################');
-				log::add('synoaudio', 'info', '# Arrêt de la tache Synoaudio \'pull\' #');
-				log::add('synoaudio', 'info', '######################################');
 				break;
 			default:
 				log::add('synoaudio', 'debug', 'Tache_deamon : L\'action \'' . $_action .'\' n\'est pas reconnu.' );
@@ -120,8 +108,15 @@ class synoaudio extends eqLogic {
 	}
 
     public static function deamon_start() {
+
 		self::deamon_stop();
-		$deamon_info = self::deamon_info();
+        
+        $sessionsid=config::byKey('SYNO.SID.Session','synoaudio');
+        if ($sessionsid=='') {
+            self::getSid();
+        }
+        config::save('deamon','true','synoaudio');
+        $deamon_info = self::deamon_info();
 		if ($deamon_info['launchable'] != 'ok') {
 			throw new Exception(__('Veuillez vérifier la configuration', __FILE__));
 		}
@@ -130,15 +125,18 @@ class synoaudio extends eqLogic {
 		if (!is_object($cron)) {
 			throw new Exception(__('Tache cron introuvable', __FILE__));
 		}
-		$cron->run();  
+		$cron->run(); 
+        log::add('synoaudio', 'info', '### Démarrage du deamon ###');
 	}
 
     public static function deamon_stop() {
+        config::save('deamon','false','synoaudio');
 		$cron = cron::byClassAndFunction('synoaudio', 'pull');
 		if (!is_object($cron)) {
 			throw new Exception(__('Tache cron introuvable', __FILE__));
 		}
 		$cron->halt();
+        log::add('synoaudio', 'info', '### Arrêt du deamon ###');
    }
 	
 	public static function pull($_eqLogic_id = null){ //Fini
@@ -329,7 +327,7 @@ class synoaudio extends eqLogic {
 	}
 	
 	public function cronDaily($_eqLogic_id = null){
-		if ( cache::byKey('SYNO.tache.off')){
+		if ( config::byKey('deamon','synoaudio')=='true' ){
 			do {
 				self::deamon_stop();
 				sleep(10);
@@ -338,14 +336,18 @@ class synoaudio extends eqLogic {
 			
 			self::createURL();
 			self::updateAPIs();
-			if( config::byKey('SYNO.SID.Session','synoaudio') != ''){
-				self::deleteSid();
-			}
-			self::getSid();
+            self::getSid();
 			self::deamon_start();
 		}
 	}
 	
+    public function cron10(){
+        if ( config::byKey('deamon','synoaudio')=='false' ){
+            log::add('synoaudio', 'info',' Deamon désactivé, passage en cron10 pour éviter la déconnection' );
+            self::pull();
+		}
+	}
+    
 	public static function convertState($_state) {
 		switch ($_state) {
 			case 'playing':
@@ -360,7 +362,7 @@ class synoaudio extends eqLogic {
 	
 	public static function syncLecteur() {
 		//Récupération de tous les players
-
+        self::deleteSid();
 		self::createURL();
 		self::updateAPIs();	
 		self::getSid();
@@ -387,8 +389,8 @@ class synoaudio extends eqLogic {
 				$eqLogic->setIsVisible(1);
 				$eqLogic->setIsEnable(1);
 				// Affectation des couleurs par défaut
-				$eqLogic->setDisplay('pgTextColor','#ffffff');
-				$eqLogic->setDisplay('pgBackColor','#83B700');
+				//$eqLogic->setDisplay('pgTextColor','#ffffff');
+				//$eqLogic->setDisplay('pgBackColor','#83B700');
 				// Affectation d'un piece (Objet) si présent dans le nombre du Player
 				foreach (jeeObject::all() as $object){
 					if (stristr($player->name ,$object->getName())) {
@@ -414,22 +416,7 @@ class synoaudio extends eqLogic {
 	}
 	
 	/*     * *********************Methode d'instance************************* */
-	public function cron15(){
-	/*	
-		$obj=synoaudio::appelURL('SYNO.AudioStation.RemotePlayer','list',null,null,null,null);
-		foreach( synoaudio::byType('synoaudio') as $eqLogic){
-			$actif=false;
-			foreach ($obj->data->players as $player){
-				if($eqLogic->getLogicalId()==$player->id){
-					log::add('synoaudio', 'debug', ' Lecteur actif ' . $player->name );
-					$actif=true;
-				}
-			}
-			$eqLogic->setIsEnable($actif);
-			$eqLogic->save();
-		}
-	*/
-	}
+
 	
 	public function preSave() {
 		$this->setCategory('multimedia', 1);
@@ -883,16 +870,17 @@ class synoaudio extends eqLogic {
 			if( $obj->error->code != "500" ) {
 				log::add('synoaudio', 'error',' Appel de l\'API : ' . $API . ' en erreur, url : ' . $fURL . ' code : ' . $obj->error->code );
 			}
-			if( $obj->error->code == "105" ){ // || $obj->error->code=="106" || $obj->error->code=="107" ){
-				log::add('synoaudio', 'info',' Réinitialisation de la connection ' );
-				self::getSid();
+			if( $obj->error->code == "105"|| $obj->error->code=="119" ){ // || $obj->error->code=="106" || $obj->error->code=="107" ){
+                self::deleteSid();
+				if (config::byKey('syno2auth','synoaudio')=='') {
+                    log::add('synoaudio', 'info',' Réinitialisation de la connection ' );
+                    self::getSid();
+                }else{
+                    self::deamon_stop();
+                    log::add('synoaudio', 'info',' Une nouvelle clé est nécéssaire pour l\'authentification ' );
+                }
+              
 			}
-		/*
-		}else{
-			if($obj->success == "true"){
-			
-			}
-		*/
 		}
 		return $obj;
 	}
@@ -949,12 +937,16 @@ class synoaudio extends eqLogic {
 	}
 	
 	public function getSid(){ //fini
+        if (config::byKey('SYNO.SID.Session', 'synoaudio') != '') {
+            log::add('synoaudio', 'debug',' La session existe déjà ' );
+			return true;
+		}
 		log::add('synoaudio', 'debug',' Création de la session - Début ' );
-		cache::set( 'SYNO.tache.off', true, 0,null) ;
 		
 		$url=config::byKey('SYNO.conf.url','synoaudio');
 		$login=urlencode(config::byKey('synoUser','synoaudio'));
 		$pass=urlencode(config::byKey('synoPwd','synoaudio'));
+        $auth=urlencode(config::byKey('syno2auth','synoaudio'));
 
 		$arrAPI=config::byKey('SYNO.API.Auth','synoaudio');
 			
@@ -963,7 +955,7 @@ class synoaudio extends eqLogic {
 		$apiVersion = $arrAPI['version'];
 		
 		//Login and creating SID
-		$fURL = $url.'/webapi/'. $apiPath .'?api=' . $apiName . '&method=Login&version='. $apiVersion .'&account='.$login.'&passwd='.$pass.'&session=AudioStation&format=sid';
+		$fURL = $url.'/webapi/'. $apiPath .'?api=' . $apiName . '&method=Login&version='. $apiVersion .'&account='.$login.'&passwd='.$pass.'&session=AudioStation&format=sid&otp_code=' . $auth . '&enable_device_token=yes';
 		//$json = file_get_contents($fURL);
 		$json = synoaudio::getCurlPage($fURL);
 		$obj = json_decode($json);
@@ -1475,7 +1467,7 @@ class synoaudio extends eqLogic {
 			return $replace;
 		}
 		$version = jeedom::versionAlias($_version);
-		$replace['#text_color#'] = $this->getConfiguration('text_color');
+		//$replace['#text_color#'] = $this->getConfiguration('text_color');
 		$replace['#version#'] = $_version;
         $replace['#synoid#'] = $this->getlogicalId();
         $replace['#hideThumbnail#'] = 0;

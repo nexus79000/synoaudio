@@ -73,6 +73,12 @@ if (!isConnect('admin')) {
 				<input type="password" class="configKey form-control" data-l1key="synoPwd" placeholder="Mot de passe"/>
 			</div>
 		</div>
+        <div class="form-group">
+			<label class="col-sm-3 control-label">{{Double authentification (optionnelle)}}</label>
+			<div class="col-sm-3">
+				<input type="password" class="configKey tooltips form-control" data-l1key="syno2auth" placeholder="Clé de sécurité"/>
+			</div>
+		</div>
 <!-- Ajout TTS Debut -->		
 
 		<div class="form-group" id="ttsTransco">

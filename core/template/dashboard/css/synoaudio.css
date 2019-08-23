@@ -1,7 +1,8 @@
 .synoaudio_widget{
+/*
    height: 312px !important;
    width: 312px !important;
-    
+*/  
 }
 .synoaudio_widget.synoaudio.light {
 	height:152px !important;
@@ -9,10 +10,10 @@
 
 .synoaudio_widget.griser {
 	pointer-events: none;
-	-moz-opacity:0.38;
+	/*-moz-opacity:0.38;*/
 	opacity:0.38;
-	filter:alpha(opacity=38);
-	-khtml-opacity:0.38;"
+	/*filter:alpha(opacity=38);*/
+	-khtml-opacity:0.38;
 }
 
 
