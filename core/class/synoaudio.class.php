@@ -362,7 +362,7 @@ class synoaudio extends eqLogic {
 	
 	public static function syncLecteur() {
 		//Récupération de tous les players
-        self::deleteSid();
+        //self::deleteSid();
 		self::createURL();
 		self::updateAPIs();	
 		self::getSid();

@@ -5,6 +5,7 @@ version 31
 ----------
 * Correction bug d'affichage suite passage v4
 * Prise en compte de la double authentification
+* Suppression du bouton de 'découverte' dans la configucration du plugin.
 
 version 30
 ----------

@@ -8,12 +8,9 @@ Après téléchargement du plugin, il faut activer celui-ci:
 
 ![synoaudio](../images/synoaudio.png)
 
-Renseignez l'adresse IP ou DNS et le port de votre nas hébergeant Synology AudioStation, l'utilisateur et le mot de passe pour se connecter. Le mode sécurisé permet de passer les requêtes en https (Verifier que le port soit bien le port https). Dans un premier temps vous devrez sauvegarder et ensuite vous pourrez lancer une découverte des lecteurs compatibles avec AudioStation.(Veillez à ce que vos lecteurs soient allumés pour qu'ils soient découverts)
+Renseignez l'adresse IP ou DNS et le port de votre nas hébergeant Synology AudioStation, l'utilisateur et le mot de passe pour se connecter. Le mode sécurisé permet de passer les requêtes en https (Verifier que le port soit bien le port https). 
 
-Pour utiliser le TTS vous devez sélectionner le type de moteur : Local (PicoTTS) ou Online(Voxygen, accès à Internet Obligatoire). Le choix de la voix ne fonctionne que pour le mode Online. 
-Remarque: Le moteur TTS local récupère la langue de Jeedom pour générer la voix.
-
-Ensuite rendez-vous dans l'onglet du plugin pour affecter un objet(pièce) à vos lecteurs et sauvegardez.
+Ensuite rendez-vous dans l'onglet du plugin pour affecter pour lancer une découverte des lecteurs compatibles avec AudioStation.(Veillez à ce que vos lecteurs soient allumés pour qu'ils soient découverts) et vous pourrez affecter un objet(pièce) à vos lecteurs et sauvegardez.
 
 Configuration des équipements
 -----------------------------
@@ -93,8 +90,6 @@ En voici un extrait :
 	- Transfert du message sur le réseau.
 	- Mise en lecture du fichier (beaucoup de requête faite à Audio Station)
 
-* Le TTS Online ne fonctionne plus et/ou n'est plus disponible :  
-Suite a une changement chez le fournisseur, le mode online ne fonctionne plus. Le mode local reste disponible
-	
-* Le message énoncé par le TTS n'est pas complet :  
-Le plugin limite le message à 200 caractères pour le moteur Local et à 100 caractères pour le moteur Online.
+* Le plugin ne se met plus a jour : 
+Avec la prise en charge de la double auth il sepeu que le plugin perde la connexion au NAS. Il faut se rendre sur la page de configuration du plugin (mettre à jour les informations de connexion si besoin) et sauvegarder la configuration. 
+

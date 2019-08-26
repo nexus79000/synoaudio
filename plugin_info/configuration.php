@@ -88,12 +88,13 @@ if (!isConnect('admin')) {
 			</div>
 		</div>
 <!-- Ajout TTS Fin -->
-	<div class="form-group">
+<!--    <div class="form-group">
 		<label class="col-sm-3 control-label">{{Découverte (Sauvegardez avant!)}}</label>
 		<div class="col-sm-2">
 			<a class="btn btn-default" id="bt_syncLecteur"><i class='fa fa-check'></i> {{Rechercher les lecteurs }}</a>
 		</div>
-	</div>	
+	</div>
+-->	
 	</fieldset>
 </form>
 <?php include_file('desktop', 'synoaudio', 'js', 'synoaudio');?>
