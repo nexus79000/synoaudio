@@ -1,5 +1,11 @@
 ﻿Change Log
 ==========
+
+version 31
+----------
+* Correction bug d'affichage suite passage v4
+* Prise en compte de la double authentification
+
 version 30
 ----------
 * Passage v4
