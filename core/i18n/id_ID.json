@@ -1,0 +1,88 @@
+{
+    "plugins\/synoaudio\/plugin_info\/info.xml": {
+        "\n\tPlugin pour Synology Audio Station.\n\nPermet de commander et de lire de la musique sur des players DLNA": "\n\tPlugin pour Synology Audio Station.\n\nPermet de commander et de lire de la musique sur des players DLNA",
+        "\n\tVous devez préciser l'adresse IP de votre Synology ainsi que le port du DSM. \n\tL'utilisateur doit être autorisé à utiliser le packet Audio Station.\n\t": "\n\tVous devez préciser l'adresse IP de votre Synology ainsi que le port du DSM. \n\tL'utilisateur doit être autorisé à utiliser le packet Audio Station.\n\t"
+    },
+    "plugins\/synoaudio\/core\/class\/synoaudio.class.php": {
+        "Aucun": "Aucun",
+        "Lecture": "Lecture",
+        "Statut": "Statut",
+        "Précédent": "Précédent",
+        "Play": "Play",
+        "Stop": "Stop",
+        "Pause": "Pause",
+        "Suivant": "Suivant",
+        "Muet": "Muet",
+        "Non muet": "Non muet",
+        "Répéter": "Répéter",
+        "Répéter status": "Répéter status",
+        "Aléatoire": "Aléatoire",
+        "Aléatoire status": "Aléatoire status",
+        "Volume status": "Volume status",
+        "Volume": "Volume",
+        "Piste": "Piste",
+        "Artiste": "Artiste",
+        "Album": "Album",
+        "Image": "Image",
+        "Jouer playlist": "Jouer playlist",
+        "Titre de la playlist": "Titre de la playlist",
+        "Jouer une radio": "Jouer une radio",
+        "Titre de la radio": "Titre de la radio",
+        "Dire": "Dire",
+        "Message": "Message",
+        "Arrêté": "Arrêté"
+    },
+    "plugins\/synoaudio\/desktop\/php\/synoaudio.php": {
+        "Rechercher": "Rechercher",
+        "Gestion": "Gestion",
+        "Découverte": "Découverte",
+        "Configuration": "Configuration",
+        "Mes Players": "Mes Players",
+        "Sauvegarder": "Sauvegarder",
+        "Supprimer": "Supprimer",
+        "Equipement": "Equipement",
+        "Commandes": "Commandes",
+        "Général": "Général",
+        "Nom du player": "Nom du player",
+        "Objet parent": "Objet parent",
+        "Aucun": "Aucun",
+        "Catégorie": "Catégorie",
+        "Couleur de fond": "Couleur de fond",
+        "Couleur du texte": "Couleur du texte",
+        "Activer": "Activer",
+        "Visible": "Visible",
+        "Affichage simplifié": "Affichage simplifié",
+        "Light": "Light",
+        "Nom": "Nom",
+        "Options": "Options"
+    },
+    "plugins\/synoaudio\/desktop\/js\/synoaudio.js": {
+        "Nom": "Nom",
+        "Tester": "Tester",
+        "Synchronisation réussie": "Synchronisation réussie"
+    },
+    "plugins\/synoaudio\/plugin_info\/configuration.php": {
+        "Adresse IP Audio Station": "Adresse IP Audio Station",
+        "Port Audio Station": "Port Audio Station",
+        "Connexion sécurisée": "Connexion sécurisée",
+        "Utilisateur Audio Station": "Utilisateur Audio Station",
+        "Mot de passe Audio Station": "Mot de passe Audio Station",
+        "TTS - Moteur": "TTS - Moteur",
+        "TTS - Transcodage vers MP3": "TTS - Transcodage vers MP3",
+        "TTS - Voix online": "TTS - Voix online",
+        "Découverte (Sauvegardez avant!)": "Découverte (Sauvegardez avant!)",
+        "Rechercher les lecteurs ": "Rechercher les lecteurs ",
+        "Synchronisation réussie": "Synchronisation réussie"
+    },
+    "plugins\/synoaudio\/desktop\/modal\/playlist.syno.php": {
+        "Action": "Action",
+        "Playlist": "Playlist"
+    },
+    "plugins\/synoaudio\/desktop\/modal\/queue.syno.php": {
+        "Vider": "Vider",
+        "Action": "Action",
+        "Piste": "Piste",
+        "Artiste": "Artiste",
+        "Album": "Album"
+    }
+}
