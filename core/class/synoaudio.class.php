@@ -64,7 +64,7 @@ class synoaudio extends eqLogic {
 	public static function dependancy_Ok() {
 		//Vérification du moteur pico
 		if(config::byKey('ttsEngine','synoaudio') =='local'){
-			if (shell_exec(' ls -l /usr/bin/pico2wave |wc -l') == 0) {
+			if (shell_exec(' ls -l /usr/bin/pico2wave |wc -l') == 0 || shell_exec(' ls -l /usr/bin/lame |wc -l') == 0 ) {
 				return false;
 			}
 		}
@@ -113,6 +113,8 @@ class synoaudio extends eqLogic {
         
         $sessionsid=config::byKey('SYNO.SID.Session','synoaudio');
         if ($sessionsid=='') {
+            self::createURL();
+			self::updateAPIs();
             self::getSid();
         }
         config::save('deamon','true','synoaudio');
@@ -796,6 +798,8 @@ class synoaudio extends eqLogic {
 	/*     * **********************Getteur Setteur*************************** */
 
 	public function createURL(){  // Terminée pas touche!
+    
+    log::add('synoaudio', 'debug',' Appel createURL ' );
 		//création de l'URL
 		if (config::byKey('synoHttps','synoaudio') == true) {
 			$racineURL='https://'. config::byKey('synoAddr','synoaudio').':'. config::byKey('synoPort','synoaudio');
