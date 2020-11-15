@@ -394,11 +394,12 @@ class synoaudio extends eqLogic {
 				//$eqLogic->setDisplay('pgTextColor','#ffffff');
 				//$eqLogic->setDisplay('pgBackColor','#83B700');
 				// Affectation d'un piece (Objet) si présent dans le nombre du Player
-				foreach (jeeObject::all() as $object){
-					if (stristr($player->name ,$object->getName())) {
-						$eqLogic->setObject_id($object->getId());
-					}
-				}
+				//Cause de bug
+                //foreach (jeeObject::all() as $object){
+				//	if (stristr($player->name ,$object->getName())) {
+				//		$eqLogic->setObject_id($object->getId());
+				//	}
+				//}
 				//Sauvegarde
 				$eqLogic->save();
 			}else{
