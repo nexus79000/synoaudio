@@ -1352,12 +1352,11 @@ class synoaudio extends eqLogic {
         // récupere le nombre de piste
         $songs=self::getQueue($_player);
         
-        //$i=0;
-        //foreach ($songs as $song){
-        //    $i++;
-        //}
-        
-        $compl_URL='offset=0&limit='. count($songs) .'&songs=&updated_index=-1';
+        $i=0;
+		if (is_countable($songs)){
+			$i=count($songs);
+		}
+        $compl_URL='offset=0&limit='. $i .'&songs=&updated_index=-1';
     
         self::appelURL('SYNO.AudioStation.RemotePlayer','updateplaylist',null,$_player,0,$compl_URL);
     }
