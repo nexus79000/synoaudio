@@ -1,6 +1,10 @@
 ﻿Change Log
 ==========
 
+version 33
+----------
+* Correction bug purge playlist
+
 version 32
 ----------
 * Correction bug lors de la premiere installation du plugin

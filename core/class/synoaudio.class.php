@@ -395,13 +395,14 @@ class synoaudio extends eqLogic {
 				//$eqLogic->setDisplay('pgBackColor','#83B700');
 				//Sauvegarde
 				$eqLogic->save();
-			}else{
-				$eqLogic->setConfiguration('is_multiple', $player->is_multiple);
-				$eqLogic->setConfiguration('password_protected', $player->password_protected);
-				$eqLogic->setConfiguration('support_seek', $player->support_seek);
-				$eqLogic->setConfiguration('support_set_volume', $player->support_set_volume);
-				$eqLogic->setConfiguration('type', $player->type);
-				$eqLogic->save();
+		//	}else{
+		//		$eqLogic->setConfiguration('is_multiple', $player->is_multiple);
+		//		$eqLogic->setConfiguration('password_protected', $player->password_protected);
+		//		$eqLogic->setConfiguration('support_seek', $player->support_seek);
+		//		$eqLogic->setConfiguration('support_set_volume', $player->support_set_volume);
+		//		$eqLogic->setConfiguration('type', $player->type);
+		//		$eqLogic->save();
+		//		
 			}
 		}
 	}
@@ -1344,21 +1345,22 @@ class synoaudio extends eqLogic {
 		self::appelURL('SYNO.AudioStation.RemotePlayer','updateplaylist',null,$_player,null,$compl_URL);
 		
 	}
-	
-	public function emptyQueue($_player) { //ok
-		//Vider la liste de lecture
-		
-		// récupere le nombre de piste
-		$songs=self::getQueue($_player);
-		$i=0;
-		foreach ($songs as $song){
-			$i++;
-		}
-		
-		$compl_URL='offset=0&limit='. $i .'&songs=&updated_index=-1';
-	
-		self::appelURL('SYNO.AudioStation.RemotePlayer','updateplaylist',null,$_player,0,$compl_URL);
-	}
+
+	public function emptyQueue($_player) { //ok 
+        //Vider la liste de lecture
+        
+        // récupere le nombre de piste
+        $songs=self::getQueue($_player);
+        
+        //$i=0;
+        //foreach ($songs as $song){
+        //    $i++;
+        //}
+        
+        $compl_URL='offset=0&limit='. count($songs) .'&songs=&updated_index=-1';
+    
+        self::appelURL('SYNO.AudioStation.RemotePlayer','updateplaylist',null,$_player,0,$compl_URL);
+    }
 
 	public function getQueue( $_player) {
 		// récupère la liste de lecture en cours sur le lecteur en parametre
