@@ -1,7 +1,7 @@
 {
 	"id" : "synoaudio",
 	"name" : "Syno Audio Station",
-	"version" : "33",
+	"version" : "34",
 	"description" : "Plugin pour Synology Audio Station",
 	"licence" : "AGPL",
 	"author" : "nexus79000",

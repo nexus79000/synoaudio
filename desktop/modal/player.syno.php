@@ -22,8 +22,10 @@ if (!is_object($syno)) {
 	throw new Exception("Equipement non trouvé");
 }
 ?>
+<link rel="stylesheet" href="plugins/synoaudio/core/template/dashboard/css/synoaudio.css" />
 <div id='div_playerSynoAlert' style="display: none;"></div>
 <a class="btn btn-success eqLogicAction pull-right " id="bt_savePlayer" data-syno_id="<?php echo init('id');?> ><i class="fas fa-check-circle"></i> {{Valider}}</a>
+<div class="synoaudio_modal">
 <table class="table table-condensed ">
 	<thead>
 		<tr>
@@ -52,7 +54,7 @@ if (!is_object($syno)) {
 				echo '<form class="form-horizontal"><fieldset>'; 
 				echo '<div class="eqlogic synoaudio form-group" data-eqLogic_id=' . $player-> getId() . '>';
 				echo '	<div class="col-sm-9">';
-				echo '		<input type="checkbox" onClick="checkPlayer();" class="checkbox eqLogicAttr checkbox" data-syno_id="' . init('id') . '" data-eqLogic_id=' . $player-> getId() . ' name="' . $player->getName() . '" data-l1key="isEnable" '. $check .'/>';
+				echo '		<input type="checkbox" class="checkbox eqLogicAttr" data-syno_id="' . init('id') . '" data-eqLogic_id=' . $player-> getId() . ' name="' . $player->getName() . '" data-l1key="isEnable" '. $check .'/>';
 				echo '	</div>';
 				echo '</div></fieldset></form>';
 				echo '</td>';
@@ -61,13 +63,13 @@ if (!is_object($syno)) {
 				echo '</td>';
 				echo '<td>';
 					//volume
-				echo '<div class="eqlogic synoaudio" data-eqLogic_id="' . $player-> getId() . '">';
-				echo '<span class="volume vairplay" style="z-index:1" value="'. $volume .'" id="' . $player->getName() . '"  >';
-				echo '</div>';
+				echo '<div class="sp_volumeSA synoaudio_volume" data-eqLogic_id="' . $player-> getId() . '">';
+        		echo '<div class="volume" value="'. $volume .'"></div>';
+				echo '</div>	';
 				echo '<script>';
-				echo '$(".synoaudio[data-eqLogic_id=' . $player-> getId() . '] .volume").bootstrapSlider({ min: 0, max: 100, value: (\''. $volume .'\' == \'\') ? 0 : parseInt(\''. $volume .'\'), reversed : false });';
-				echo '$(".synoaudio[data-eqLogic_id=' . $player-> getId() . '] .slider.slider-horizontal").css(\'z-index\',1);';
-				echo '$(".synoaudio[data-eqLogic_id=' . $player-> getId() . '] .volume").on(\'slideStop\', function () { ';
+				echo '$(".synoaudio_volume[data-eqLogic_id=' . $player-> getId() . '] .volume").slider({ min: 0, max: 100, value: (\''. $volume .'\' == \'\') ? 0 : parseInt(\''. $volume .'\')});';
+				echo '$(".synoaudio_volume[data-eqLogic_id=' . $player-> getId() . '] .slider.slider-horizontal").css(\'z-index\',1);';
+				echo '$(".synoaudio_volume[data-eqLogic_id=' . $player-> getId() . '] .volume").on(\'slideStop\', function () { ';
 				echo '		var id = ' . init('id') . '; ';
 				echo '		savePlayer(id,"false"); ';
 				echo '}); ';
@@ -85,6 +87,7 @@ if (!is_object($syno)) {
 		?>
 	</tbody>
 </table>
+</div>
 <script>
 
 $('#bt_savePlayer').on('click',function(){
@@ -92,10 +95,6 @@ $('#bt_savePlayer').on('click',function(){
 	savePlayer(id,"true");
 });
 
-function checkPlayer(){
-	$('#div_playerSynoAlert').showAlert({message: id+" "+closeModal, level: 'danger'});
-	$("#md_modal2").dialog('close');
-}
 
 function savePlayer(id,closeModal){
 	var players = '';

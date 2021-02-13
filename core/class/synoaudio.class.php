@@ -949,7 +949,7 @@ class synoaudio extends eqLogic {
 		$apiVersion = $arrAPI['version'];
 		
 		//Login and creating SID
-		$fURL = $url.'/webapi/'. $apiPath .'?api=' . $apiName . '&method=Login&version='. $apiVersion .'&account='.$login.'&passwd='.$pass.'&session=AudioStation&format=sid&otp_code=' . $auth . '&enable_device_token=yes';
+		$fURL = $url.'/webapi/'. $apiPath .'?api=' . $apiName . '&method=login&version='. $apiVersion .'&account='.$login.'&passwd='.$pass.'&session=AudioStation&format=sid&otp_code=' . $auth . '&enable_device_token=yes';
 		//$json = file_get_contents($fURL);
 		$json = synoaudio::getCurlPage($fURL);
 		$obj = json_decode($json);
@@ -1430,7 +1430,7 @@ class synoaudio extends eqLogic {
 			self::repeat($_player,$obj_etat->data->play_mode->repeat);
 			log::add('synoaudio', 'debug', ' TTS Mode repeat ON ' );
 		}
-		if ( $obj_etat->data->state != 'none' && $obj_etat->data->playlist_total =='0'){
+		if ( $obj_etat->data->playlist_total =='0'){ // $obj_etat->data->state != 'none' && 
 			self::emptyQueue($_player);
 		}else{
 			self::removeTrack($position,$_player);

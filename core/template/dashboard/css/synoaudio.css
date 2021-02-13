@@ -80,3 +80,8 @@
 .synoaudio_widget .sp_CmdSA  .repeat_one i{
     color:blue;
 }
+
+.synoaudio_modal .sp_volumeSA{
+    position:relative;
+    margin: 4px 0;
+}

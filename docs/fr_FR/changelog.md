@@ -1,6 +1,10 @@
 ﻿Change Log
 ==========
 
+version 34
+----------
+* Adaptation DSM 7.0
+
 version 33
 ----------
 * Correction bug purge playlist
