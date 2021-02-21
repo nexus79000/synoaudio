@@ -986,13 +986,12 @@ class synoaudio extends eqLogic {
 			$json = synoaudio::getCurlPage($fURL);
 			$obj = json_decode($json);
 			if($obj->success != "true"){
-                config::remove('SYNO.SID.Session','synoaudio');
 				log::add('synoaudio', 'error',' Destruction de la session en erreur, code : ' . $obj->error->code );
 			}else{
 				//authentification successful
-				config::remove('SYNO.SID.Session','synoaudio');
 				log::add('synoaudio', 'debug',' Destruction de la session - OK ');
 			}
+            config::remove('SYNO.SID.Session','synoaudio');
 		}
 		log::add('synoaudio', 'debug',' Destruction de la session - Fin ');
 	}
