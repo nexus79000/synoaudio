@@ -10,6 +10,11 @@ Après téléchargement du plugin, il faut activer celui-ci:
 
 Renseignez l'adresse IP ou DNS et le port de votre nas hébergeant Synology AudioStation, l'utilisateur et le mot de passe pour se connecter. Le mode sécurisé permet de passer les requêtes en https (Verifier que le port soit bien le port https). 
 
+> **Tip**
+>
+> L'utilisateur créé sur le NAS doit absolument faire partie du groupe "administrators" (il fait par defaut partie du groupe "users", le groupe "http" n'est pas utile).
+> Si ce n'est pas le cas, le démon se lancera, mais la découverte des lecteurs sur le réseau restera vide et vos lecteurs n'apparaitront pas.
+
 Ensuite rendez-vous dans l'onglet du plugin pour affecter pour lancer une découverte des lecteurs compatibles avec AudioStation.(Veillez à ce que vos lecteurs soient allumés pour qu'ils soient découverts) et vous pourrez affecter un objet(pièce) à vos lecteurs et sauvegardez.
 
 Configuration des équipements
