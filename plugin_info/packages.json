@@ -1,0 +1,8 @@
+{
+  "apt" : {
+    "libttspico-utils" : {},
+    "lame" : {}  },
+  "post-install" : {
+
+  }
+}

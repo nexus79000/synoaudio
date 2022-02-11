@@ -1,6 +1,11 @@
 ﻿Change Log
 ==========
 
+version 35
+----------
+* Correction evolution 4.2.x 
+* Evolution gestion dépendances
+
 version 34
 ----------
 * Adaptation DSM 7.0

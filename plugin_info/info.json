@@ -1,11 +1,11 @@
 {
 	"id" : "synoaudio",
 	"name" : "Syno Audio Station",
-	"version" : "34",
+	"version" : "35",
 	"description" : "Plugin pour Synology Audio Station",
 	"licence" : "AGPL",
 	"author" : "nexus79000",
-	"require" : "3.3",
+	"require" : "4.2.1",
 	"category" : "multimedia",
     "changelog" : "https://nexus79000.github.io/synoaudio/#language#/changelog",
 	"documentation" : "https://nexus79000.github.io/synoaudio/#language#/",

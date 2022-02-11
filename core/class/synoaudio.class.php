@@ -284,18 +284,18 @@ class synoaudio extends eqLogic {
 													//if (!@synoaudio::getCurlPage($cover) === false ) {
 													if (!stristr(synoaudio::getCurlPage($cover),'not found')){
 														log::add('synoaudio', 'debug', ' Mise à jour Cover '. $cover );
-														file_put_contents(dirname(__FILE__) . '/../../../../plugins/synoaudio/docs/images/syno_cover_' . $eqLogic->getId() . '.jpg', synoaudio::getCurlPage($cover));
+														file_put_contents(dirname(__FILE__) . '/../../../../plugins/synoaudio/desktop/images/syno_cover_' . $eqLogic->getId() . '.jpg', synoaudio::getCurlPage($cover));
 														$changed = true;
 													} else {
 														log::add('synoaudio', 'debug', ' Pas de Cover ');
-														if (file_exists(dirname(__FILE__) . '/../../../../plugins/synoaudio/docs/images/syno_cover_' . $eqLogic->getId() . '.jpg')) {
-															unlink(dirname(__FILE__) . '/../../../../plugins/synoaudio/docs/images/syno_cover_' . $eqLogic->getId() . '.jpg');
+														if (file_exists(dirname(__FILE__) . '/../../../../plugins/synoaudio/desktop/images/syno_cover_' . $eqLogic->getId() . '.jpg')) {
+															unlink(dirname(__FILE__) . '/../../../../plugins/synoaudio/desktop/images/syno_cover_' . $eqLogic->getId() . '.jpg');
 														}
 													}
 												}
 											}else{
-												if (file_exists(dirname(__FILE__) . '/../../../../plugins/synoaudio/docs/images/syno_cover_' . $eqLogic->getId() . '.jpg')) {
-													unlink(dirname(__FILE__) . '/../../../../plugins/synoaudio/docs/images/syno_cover_' . $eqLogic->getId() . '.jpg');
+												if (file_exists(dirname(__FILE__) . '/../../../../plugins/synoaudio/desktop/images/syno_cover_' . $eqLogic->getId() . '.jpg')) {
+													unlink(dirname(__FILE__) . '/../../../../plugins/synoaudio/desktop/images/syno_cover_' . $eqLogic->getId() . '.jpg');
 												}
 											}
 										}
@@ -1500,11 +1500,11 @@ class synoaudio extends eqLogic {
 		}
 		$cmd_track_image = $this->getCmd(null, 'track_image');
 		if (is_object($cmd_track_image)) {
-			$img = dirname(__FILE__) . '/../../../../plugins/synoaudio/docs/images/syno_cover_' . $this->getId() . '.jpg';
+			$img = dirname(__FILE__) . '/../../../../plugins/synoaudio/desktop/images/syno_cover_' . $this->getId() . '.jpg';
 			if (file_exists($img) && filesize($img) > 100) {
-				$replace['#thumbnail#'] = 'plugins/synoaudio/docs/images/syno_cover_' . $this->getId() . '.jpg?time=' .time();
+				$replace['#thumbnail#'] = 'plugins/synoaudio/desktop/images/syno_cover_' . $this->getId() . '.jpg?time=' .time();
 			} else {
-				$replace['#thumbnail#'] = 'plugins/synoaudio/docs/images/syno_cover_default.png?time=' .time();
+				$replace['#thumbnail#'] = 'plugins/synoaudio/desktop/images/syno_cover_default.png?time=' .time();
 			}
 		}
 		$replace['#blockVolume#'] = $this->getConfiguration('support_set_volume');
