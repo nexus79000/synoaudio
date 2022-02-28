@@ -9,8 +9,23 @@
 	"category" : "multimedia",
     "changelog" : "https://nexus79000.github.io/synoaudio/#language#/changelog",
 	"documentation" : "https://nexus79000.github.io/synoaudio/#language#/",
-    "language" : ["fr_FR","en_US","de_DE","sp_SP","ru_RU","id_ID","it_IT"],
-	"compatibility" : ["miniplus","smart","rpi","docker","diy"],
+    "language" : [
+        "fr_FR",
+        "en_US",
+        "de_DE",
+        "sp_SP",
+        "ru_RU",
+        "id_ID",
+        "it_IT"
+    ],
+	"compatibility" : [
+        "miniplus",
+        "smart",
+        "rpi",
+        "docker",
+        "diy",
+        "v4"
+    ],
 	"hasDependency" : true,
 	"hasOwnDeamon" : true,
     "display" : "panel",
